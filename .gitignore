@@ -1,0 +1,5 @@
+node_modules/
+cypress/screenshots/
+cypress/videos/
+fake-store-api/node_modules/
+fake-store-api/mongo_data/

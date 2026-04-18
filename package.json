@@ -1,0 +1,14 @@
+{
+  "name": "fake-store-api-testing",
+  "version": "1.0.0",
+  "description": "Integration and performance tests for the Fake Store API",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "k6:load": "k6 run k6/load-test.js",
+    "k6:stress": "k6 run k6/stress-test.js"
+  },
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  }
+}
