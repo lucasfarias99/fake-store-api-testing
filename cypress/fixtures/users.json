@@ -71,6 +71,20 @@
       "phone": "0004-updated"
     }
   },
+  "tcA001": {
+    "email": "tcA001@test.com",
+    "username": "tcA001",
+    "password": "secretA001",
+    "name": { "firstname": "Test", "lastname": "A001" },
+    "address": {
+      "city": "TestCityA001",
+      "street": "Street A001",
+      "number": 1,
+      "zipcode": "00000-A01",
+      "geolocation": { "lat": "10.A001", "long": "20.A001" }
+    },
+    "phone": "A001"
+  },
   "tcU005": {
     "email": "tcU005@test.com",
     "username": "tcU005",
