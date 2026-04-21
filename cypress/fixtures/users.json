@@ -1,0 +1,88 @@
+{
+  "tcU001": {
+    "email": "tcU001@test.com",
+    "username": "tcU001",
+    "password": "secret001",
+    "name": { "firstname": "Test", "lastname": "U001" },
+    "address": {
+      "city": "TestCity001",
+      "street": "Street 001",
+      "number": 1,
+      "zipcode": "00000-001",
+      "geolocation": { "lat": "10.0001", "long": "20.0001" }
+    },
+    "phone": "0001"
+  },
+  "tcU002": {
+    "email": "tcU002@test.com",
+    "username": "tcU002",
+    "password": "secret002",
+    "name": { "firstname": "Test", "lastname": "U002" },
+    "address": {
+      "city": "TestCity002",
+      "street": "Street 002",
+      "number": 2,
+      "zipcode": "00000-002",
+      "geolocation": { "lat": "10.0002", "long": "20.0002" }
+    },
+    "phone": "0002"
+  },
+  "tcU003": {
+    "email": "tcU003@test.com",
+    "username": "tcU003",
+    "password": "secret003",
+    "name": { "firstname": "Test", "lastname": "U003" },
+    "address": {
+      "city": "TestCity003",
+      "street": "Street 003",
+      "number": 3,
+      "zipcode": "00000-003",
+      "geolocation": { "lat": "10.0003", "long": "20.0003" }
+    },
+    "phone": "0003"
+  },
+  "tcU004": {
+    "original": {
+      "email": "tcU004-original@test.com",
+      "username": "tcU004-original",
+      "password": "secret004",
+      "name": { "firstname": "Test", "lastname": "U004 original" },
+      "address": {
+        "city": "TestCity004",
+        "street": "Street 004 original",
+        "number": 4,
+        "zipcode": "00000-004",
+        "geolocation": { "lat": "10.0004", "long": "20.0004" }
+      },
+      "phone": "0004"
+    },
+    "updated": {
+      "email": "tcU004-updated@test.com",
+      "username": "tcU004-updated",
+      "password": "secret004-updated",
+      "name": { "firstname": "Updated", "lastname": "U004 atualizado" },
+      "address": {
+        "city": "TestCity004Updated",
+        "street": "Street 004 updated",
+        "number": 44,
+        "zipcode": "99999-004",
+        "geolocation": { "lat": "99.0004", "long": "88.0004" }
+      },
+      "phone": "0004-updated"
+    }
+  },
+  "tcU005": {
+    "email": "tcU005@test.com",
+    "username": "tcU005",
+    "password": "secret005",
+    "name": { "firstname": "Test", "lastname": "U005" },
+    "address": {
+      "city": "TestCity005",
+      "street": "Street 005",
+      "number": 5,
+      "zipcode": "00000-005",
+      "geolocation": { "lat": "10.0005", "long": "20.0005" }
+    },
+    "phone": "0005"
+  }
+}
