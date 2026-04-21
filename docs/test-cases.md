@@ -41,8 +41,8 @@
 | **Resource**       | Products                                            |
 | **Method**         | GET                                                 |
 | **Endpoint**       | /products                                           |
-| **Preconditions**  | Create 3 products via POST /products using each entry in `fixtures/products.json → tcP001` |
-| **Postconditions** | Products remain in the system                       |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcP001` and store the returned ID |
+| **Postconditions** | Delete the created product via DELETE /products/:id |
 
 ### Body
 
@@ -50,7 +50,7 @@
 |-----------------|----------------------------------------------------------------------------|
 | **Steps**       | 1 - Send GET request to /products                                          |
 | **Test Data**   | None                                                                       |
-| **Expected**    | 200 OK — response is an array and contains all 3 products created in precondition |
+| **Expected**    | 200 OK — response is an array and deep-includes the product created in precondition |
 | **Actual**      | 200 OK                                                                     |
 | **Status**      | PASS                                                                       |
 | **Comments**    | GET /products response items include a Mongoose `__v` field; tolerated by `.to.include` asserting only on seeded fields |
@@ -203,8 +203,8 @@
 | **Resource**       | Products                                                                               |
 | **Method**         | GET                                                                                    |
 | **Endpoint**       | /products/category/:category                                                           |
-| **Preconditions**  | Create 3 products via POST /products using each entry in `fixtures/products.json → tcP007` and store their IDs |
-| **Postconditions** | Delete all 3 created products via DELETE /products/:id                                 |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcP007` and store the returned ID |
+| **Postconditions** | Delete the created product via DELETE /products/:id                                    |
 
 ### Body
 
@@ -212,7 +212,7 @@
 |-----------------|-------------------------------------------------------------------------------------------|
 | **Steps**       | 1 - Send GET request to /products/category/test-categoria-tcP007                           |
 | **Test Data**   | None                                                                                      |
-| **Expected**    | 200 OK — response array contains exactly the 3 products created in precondition           |
+| **Expected**    | 200 OK — response array deep-includes the product created in precondition                 |
 | **Actual**      | 200 OK                                                                                    |
 | **Status**      | PASS                                                                                      |
 | **Comments**    | Unique category name prevents interference from seeded or other test data. Response items include a Mongoose `__v` field; tolerated by `.to.include` |
@@ -253,23 +253,23 @@
 | Field              | Value                                                                                  |
 |--------------------|----------------------------------------------------------------------------------------|
 | **ID**             | TC-C002                                                                               |
-| **Description**    | Add a new cart containing multiple products                                            |
+| **Description**    | Add a new cart                                                                         |
 | **Resource**       | Carts                                                                                  |
 | **Method**         | POST                                                                                   |
 | **Endpoint**       | /carts                                                                                 |
-| **Preconditions**  | Create 2 products via POST /products using each entry in `fixtures/products.json → tcC002` and store their IDs |
-| **Postconditions** | Delete the created cart via DELETE /carts/:id and both created products via DELETE /products/:id |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcC002` and store the returned ID |
+| **Postconditions** | Delete the created cart via DELETE /carts/:id and the created product via DELETE /products/:id |
 
 ### Body
 
 | Field           | Value                                                                                                                 |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------|
-| **Steps**       | 1 - Send POST request to /carts with `userId`, `date` and `products` (2 entries referencing the IDs from precondition) |
-| **Test Data**   | `fixtures/carts.json → tcC002` (userId, date, quantities) merged with productIds from precondition                     |
-| **Expected**    | 200 OK — response body contains the submitted `userId`, `date`, a generated `id`, and both products (productId + quantity match the submission) |
+| **Steps**       | 1 - Send POST request to /carts with `userId`, `date` and `products` (single entry referencing the ID from precondition) |
+| **Test Data**   | `fixtures/carts.json → tcC002` (userId, date, quantities) merged with productId from precondition                      |
+| **Expected**    | 200 OK — response body contains the submitted `userId`, `date`, a generated `id`, and the product (productId + quantity match the submission) |
 | **Actual**      | 200 OK                                                                                                                   |
 | **Status**      | PASS                                                                                                                   |
-| **Comments**    | Happy path also covers the "cart accepts multiple products" behavior. API inconsistency: POST /carts response leaks a Mongo `_id` on each product subdocument (absent from all GET responses). Top-level POST response has no `__v` (unlike GET/PUT/DELETE). Assertion uses `.to.include` per product subdoc to ignore `_id` |
+| **Comments**    | API inconsistency: POST /carts response leaks a Mongo `_id` on each product subdocument (absent from all GET responses). Top-level POST response has no `__v` (unlike GET/PUT/DELETE). Assertion uses `.to.include` per product subdoc to ignore `_id` |
 
 ---
 

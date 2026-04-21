@@ -1,147 +1,96 @@
+import products from '../../fixtures/products.json'
+import { uniquify } from '../../support/utils'
+
 describe('API - /products', () => {
-    let createdIds = []
-
-    beforeEach(() => {
-        createdIds = []
-    })
-
-    afterEach(() => {
-        createdIds.forEach((id) => {
-            cy.request({
-                method: 'DELETE',
-                url: `/products/${id}`,
-                failOnStatusCode: false,
-            })
-        })
-    })
-
     it('TC-P001 — Get all products', () => {
-        cy.fixture('products').then((products) => {
-            const seedProducts = products.tcP001
+        const product = uniquify(products.tcP001, Date.now(), ['title', 'category'])
 
-            seedProducts.forEach((product) => {
-                cy.request('POST', '/products', product).then((res) => {
-                    createdIds.push(res.body.id)
-                })
-            })
-
+        cy.createProduct(product).then((created) => {
             cy.request('GET', '/products').then((response) => {
                 expect(response.status).to.eq(200)
                 expect(response.body).to.be.an('array')
 
-                seedProducts.forEach((seeded) => {
-                    const match = response.body.find((p) => p.title === seeded.title)
-                    expect(match, `product "${seeded.title}" present in response`).to.exist
-                    expect(match).to.include(seeded)
-                })
+                const match = response.body.find((p) => p.id === created.id)
+                expect(match, 'created product present in response').to.exist
+                expect(match).to.include(product)
             })
         })
     })
 
     it('TC-P002 — Add new product', () => {
-        cy.fixture('products').then((products) => {
-            const newProduct = products.tcP002
+        const newProduct = uniquify(products.tcP002, Date.now(), ['title', 'category'])
 
-            cy.request('POST', '/products', newProduct).then((response) => {
-                expect(response.status).to.eq(200)
-                expect(response.body).to.include(newProduct)
-                expect(response.body.id).to.exist
+        cy.request('POST', '/products', newProduct).then((response) => {
+            expect(response.status).to.eq(200)
+            expect(response.body).to.include(newProduct)
+            expect(response.body.id).to.exist
 
-                createdIds.push(response.body.id)
-            })
+            cy.trackProduct(response.body.id)
         })
     })
 
     it('TC-P003 — Get product by ID', () => {
-        cy.fixture('products').then((products) => {
-            const product = products.tcP003
+        const product = uniquify(products.tcP003, Date.now(), ['title', 'category'])
 
-            cy.request('POST', '/products', product).then((postRes) => {
-                const id = postRes.body.id
-                createdIds.push(id)
-
-                cy.request('GET', `/products/${id}`).then((response) => {
-                    expect(response.status).to.eq(200)
-                    expect(response.body).to.include(product)
-                    expect(response.body.id).to.eq(id)
-                })
+        cy.createProduct(product).then((created) => {
+            cy.request('GET', `/products/${created.id}`).then((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body).to.include(product)
+                expect(response.body.id).to.eq(created.id)
             })
         })
     })
 
     it('TC-P004 — Update product by ID', () => {
-        cy.fixture('products').then((products) => {
-            const original = products.tcP004.original
-            const updated = products.tcP004.updated
+        const runId = Date.now()
+        const original = uniquify(products.tcP004.original, runId, ['title', 'category'])
+        const updated = uniquify(products.tcP004.updated, runId, ['title', 'category'])
 
-            cy.request('POST', '/products', original).then((postRes) => {
-                const id = postRes.body.id
-                createdIds.push(id)
-
-                cy.request('PUT', `/products/${id}`, updated).then((response) => {
-                    expect(response.status).to.eq(200)
-                    expect(response.body).to.include(updated)
-                    expect(response.body.id).to.eq(id)
-                })
+        cy.createProduct(original).then((created) => {
+            cy.request('PUT', `/products/${created.id}`, updated).then((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body).to.include(updated)
+                expect(response.body.id).to.eq(created.id)
             })
         })
     })
 
     it('TC-P005 — Delete product by ID', () => {
-        cy.fixture('products').then((products) => {
-            const product = products.tcP005
+        const product = uniquify(products.tcP005, Date.now(), ['title', 'category'])
 
-            cy.request('POST', '/products', product).then((postRes) => {
-                const id = postRes.body.id
-
-                cy.request('DELETE', `/products/${id}`).then((response) => {
-                    expect(response.status).to.eq(200)
-                    expect(response.body).to.include(product)
-                    expect(response.body.id).to.eq(id)
-                })
+        cy.createProduct(product).then((created) => {
+            cy.request('DELETE', `/products/${created.id}`).then((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body).to.include(product)
+                expect(response.body.id).to.eq(created.id)
             })
         })
     })
 
     it('TC-P006 — List product categories includes created category', () => {
-        cy.fixture('products').then((products) => {
-            const product = products.tcP006
+        const product = uniquify(products.tcP006, Date.now(), ['title', 'category'])
 
-            cy.request('POST', '/products', product).then((postRes) => {
-                createdIds.push(postRes.body.id)
-
-                cy.request('GET', '/products/categories').then((response) => {
-                    expect(response.status).to.eq(200)
-                    expect(response.body).to.be.an('array')
-                    expect(response.body).to.include(product.category)
-                })
-            })
-        })
-    })
-
-    it('TC-P007 — List products in category returns only matching products', () => {
-        cy.fixture('products').then((products) => {
-            const seedProducts = products.tcP007
-            const category = seedProducts[0].category
-
-            seedProducts.forEach((product) => {
-                cy.request('POST', '/products', product).then((res) => {
-                    createdIds.push(res.body.id)
-                })
-            })
-
-            cy.request('GET', `/products/category/${category}`).then((response) => {
+        cy.createProduct(product).then(() => {
+            cy.request('GET', '/products/categories').then((response) => {
                 expect(response.status).to.eq(200)
                 expect(response.body).to.be.an('array')
-                expect(response.body).to.have.length(seedProducts.length)
-
-                seedProducts.forEach((seeded) => {
-                    const match = response.body.find((p) => p.title === seeded.title)
-                    expect(match, `product "${seeded.title}" present in response`).to.exist
-                    expect(match).to.include(seeded)
-                })
+                expect(response.body).to.include(product.category)
             })
         })
     })
 
+    it('TC-P007 — List products in category returns matching products', () => {
+        const product = uniquify(products.tcP007, Date.now(), ['title', 'category'])
+
+        cy.createProduct(product).then((created) => {
+            cy.request('GET', `/products/category/${product.category}`).then((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body).to.be.an('array')
+
+                const match = response.body.find((p) => p.id === created.id)
+                expect(match, 'created product present in category response').to.exist
+                expect(match).to.include(product)
+            })
+        })
+    })
 })

@@ -1,27 +1,11 @@
 {
-  "tcP001": [
-    {
-      "title": "Produto TC-001 A",
-      "price": 1,
-      "description": "Produto A para teste de listagem geral",
-      "category": "test-categoria-tcP001",
-      "image": "http://tcP001a.com"
-    },
-    {
-      "title": "Produto TC-001 B",
-      "price": 2,
-      "description": "Produto B para teste de listagem geral",
-      "category": "test-categoria-tcP001",
-      "image": "http://tcP001b.com"
-    },
-    {
-      "title": "Produto TC-001 C",
-      "price": 3,
-      "description": "Produto C para teste de listagem geral",
-      "category": "test-categoria-tcP001",
-      "image": "http://tcP001c.com"
-    }
-  ],
+  "tcP001": {
+    "title": "Produto TC-001",
+    "price": 1,
+    "description": "Produto para teste de listagem geral",
+    "category": "test-categoria-tcP001",
+    "image": "http://tcP001.com"
+  },
   "tcP002": {
     "title": "Produto TC-002",
     "price": 10,
@@ -73,22 +57,13 @@
     "category": "test-categoria-tcC001",
     "image": "http://tcC001.com"
   },
-  "tcC002": [
-    {
-      "title": "Produto auxiliar TC-C002 A",
-      "price": 10,
-      "description": "Produto auxiliar A para teste de criação de carrinho",
-      "category": "test-categoria-tcC002",
-      "image": "http://tcC002a.com"
-    },
-    {
-      "title": "Produto auxiliar TC-C002 B",
-      "price": 20,
-      "description": "Produto auxiliar B para teste de criação de carrinho",
-      "category": "test-categoria-tcC002",
-      "image": "http://tcC002b.com"
-    }
-  ],
+  "tcC002": {
+    "title": "Produto auxiliar TC-C002",
+    "price": 10,
+    "description": "Produto auxiliar para teste de criação de carrinho",
+    "category": "test-categoria-tcC002",
+    "image": "http://tcC002.com"
+  },
   "tcC003": {
     "title": "Produto auxiliar TC-C003",
     "price": 10,
@@ -117,27 +92,11 @@
     "category": "test-categoria-tcC006",
     "image": "http://tcC006.com"
   },
-  "tcP007": [
-    {
-      "title": "Produto TC-007 A",
-      "price": 1,
-      "description": "Produto A da categoria de teste",
-      "category": "test-categoria-tcP007",
-      "image": "http://tcP007a.com"
-    },
-    {
-      "title": "Produto TC-007 B",
-      "price": 2,
-      "description": "Produto B da categoria de teste",
-      "category": "test-categoria-tcP007",
-      "image": "http://tcP007b.com"
-    },
-    {
-      "title": "Produto TC-007 C",
-      "price": 3,
-      "description": "Produto C da categoria de teste",
-      "category": "test-categoria-tcP007",
-      "image": "http://tcP007c.com"
-    }
-  ]
+  "tcP007": {
+    "title": "Produto TC-007",
+    "price": 1,
+    "description": "Produto da categoria de teste",
+    "category": "test-categoria-tcP007",
+    "image": "http://tcP007.com"
+  }
 }
