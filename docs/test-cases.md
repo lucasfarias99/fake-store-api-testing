@@ -240,8 +240,8 @@
 | **Steps**       | 1 - Send GET request to /carts                                                            |
 | **Test Data**   | None                                                                                      |
 | **Expected**    | 200 OK — response array deep-includes the cart created in precondition                    |
-| **Actual**      | TBD                                                                                       |
-| **Status**      | TBD                                                                                       |
+| **Actual**      | 200 OK                                                                                       |
+| **Status**      | PASS                                                                                       |
 | **Comments**    | Uses `.to.deep.include` to avoid coupling to seed data or parallel test activity          |
 
 ---
@@ -267,8 +267,8 @@
 | **Steps**       | 1 - Send POST request to /carts with `userId`, `date` and `products` (2 entries referencing the IDs from precondition) |
 | **Test Data**   | `fixtures/carts.json → tcC002` (userId, date, quantities) merged with productIds from precondition                     |
 | **Expected**    | 200 OK — response body contains the submitted `userId`, `date`, a generated `id`, and both products (productId + quantity match the submission) |
-| **Actual**      | TBD                                                                                                                   |
-| **Status**      | TBD                                                                                                                   |
+| **Actual**      | 200 OK                                                                                                                   |
+| **Status**      | PASS                                                                                                                   |
 | **Comments**    | Happy path also covers the "cart accepts multiple products" behavior. API inconsistency: POST /carts response leaks a Mongo `_id` on each product subdocument, while GET responses strip it — assertion uses `.to.deep.include` on each product to ignore `_id` |
 
 ---
@@ -294,8 +294,8 @@
 | **Steps**       | 1 - Send GET request to /carts/:id using the cart ID from precondition                    |
 | **Test Data**   | None                                                                                      |
 | **Expected**    | 200 OK — response body matches the cart created in precondition (same `id`, `userId`, `date`, `products`) |
-| **Actual**      | TBD                                                                                       |
-| **Status**      | TBD                                                                                       |
+| **Actual**      | 200 OK                                                                                       |
+| **Status**      | PASS                                                                                       |
 | **Comments**    | None                                                                                      |
 
 ---
@@ -321,8 +321,8 @@
 | **Steps**       | 1 - Send GET request to /carts/user/:userId using the userId from `fixtures/carts.json → tcC004` |
 | **Test Data**   | None                                                                                      |
 | **Expected**    | 200 OK — response array deep-includes the cart created in precondition                    |
-| **Actual**      | TBD                                                                                       |
-| **Status**      | TBD                                                                                       |
+| **Actual**      | 200 OK                                                                                       |
+| **Status**      | PASS                                                                                       |
 | **Comments**    | Seed already populates carts for userIds 1–10. Assertion uses `.to.deep.include` to validate only the test's contribution, not the full array length — standard practice for integration tests against shared/seeded data |
 
 ---
@@ -348,8 +348,8 @@
 | **Steps**       | 1 - Send PUT request to /carts/:id with `fixtures/carts.json → tcC005.updated` as body (productId filled from precondition) |
 | **Test Data**   | `fixtures/carts.json → tcC005.updated`                                                     |
 | **Expected**    | 200 OK — response body matches `tcC005.updated` with the same cart `id` from precondition  |
-| **Actual**      | TBD                                                                                       |
-| **Status**      | TBD                                                                                       |
+| **Actual**      | 200 OK                                                                                       |
+| **Status**      | PASS                                                                                       |
 | **Comments**    | `original` and `updated` must differ in at least one field (e.g. `userId`, `date`, or `quantity`) to validate that the update actually happened |
 
 ---
@@ -375,8 +375,170 @@
 | **Steps**       | 1 - Send DELETE request to /carts/:id using the cart ID from precondition                 |
 | **Test Data**   | None                                                                                      |
 | **Expected**    | 200 OK — response body matches the cart created in precondition                           |
-| **Actual**      | TBD                                                                                       |
-| **Status**      | TBD                                                                                       |
+| **Actual**      | 200 OK                                                                                       |
+| **Status**      | PASS                                                                                       |
 | **Comments**    | No teardown needed for the cart — the test itself is the deletion                         |
+
+---
+
+## TC-U001 — Get all users
+
+### Header
+
+| Field              | Value                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| **ID**             | TC-U001                                                                                |
+| **Description**    | Get all users                                                                          |
+| **Resource**       | Users                                                                                  |
+| **Method**         | GET                                                                                    |
+| **Endpoint**       | /users                                                                                 |
+| **Preconditions**  | Create a user via POST /users using `fixtures/users.json → tcU001` and store the returned ID |
+| **Postconditions** | Delete the created user via DELETE /users/:id                                          |
+
+### Body
+
+| Field           | Value                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Steps**       | 1 - Send GET request to /users                                                            |
+| **Test Data**   | None                                                                                      |
+| **Expected**    | 200 OK — response array deep-includes the user created in precondition                    |
+| **Actual**      | 200 OK                                                                                    |
+| **Status**      | PASS                                                                                      |
+| **Comments**    | Uses `.to.deep.include` to avoid coupling to seed data                                    |
+
+---
+
+## TC-U002 — Add new user
+
+### Header
+
+| Field              | Value                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| **ID**             | TC-U002                                                                                |
+| **Description**    | Add new user                                                                           |
+| **Resource**       | Users                                                                                  |
+| **Method**         | POST                                                                                   |
+| **Endpoint**       | /users                                                                                 |
+| **Preconditions**  | None                                                                                   |
+| **Postconditions** | Delete the created user via DELETE /users/:id                                          |
+
+### Body
+
+| Field           | Value                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Steps**       | 1 - Send POST request to /users with test data                                            |
+| **Test Data**   | `fixtures/users.json → tcU002`                                                            |
+| **Expected**    | 200 OK — response body matches the `tcU002` fixture with an auto-generated `id`           |
+| **Actual**      | 200 OK                                                                                    |
+| **Status**      | PASS                                                                                      |
+| **Comments**    | API returns 200 instead of REST-standard 201 on resource creation                         |
+
+---
+
+## TC-U003 — Get user by ID
+
+### Header
+
+| Field              | Value                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| **ID**             | TC-U003                                                                                |
+| **Description**    | Get user by ID                                                                         |
+| **Resource**       | Users                                                                                  |
+| **Method**         | GET                                                                                    |
+| **Endpoint**       | /users/:id                                                                             |
+| **Preconditions**  | Create a user via POST /users using `fixtures/users.json → tcU003` and store the returned ID |
+| **Postconditions** | Delete the created user via DELETE /users/:id                                          |
+
+### Body
+
+| Field           | Value                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Steps**       | 1 - Send GET request to /users/:id using the ID from precondition                         |
+| **Test Data**   | None                                                                                      |
+| **Expected**    | 200 OK — response body matches the `tcU003` fixture with the same `id` from precondition  |
+| **Actual**      | 200 OK                                                                                    |
+| **Status**      | PASS                                                                                      |
+| **Comments**    | None                                                                                      |
+
+---
+
+## TC-U004 — Update user
+
+### Header
+
+| Field              | Value                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| **ID**             | TC-U004                                                                                |
+| **Description**    | Update user by ID                                                                      |
+| **Resource**       | Users                                                                                  |
+| **Method**         | PUT                                                                                    |
+| **Endpoint**       | /users/:id                                                                             |
+| **Preconditions**  | Create a user via POST /users using `fixtures/users.json → tcU004.original` and store the returned ID |
+| **Postconditions** | Delete the created user via DELETE /users/:id                                          |
+
+### Body
+
+| Field           | Value                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Steps**       | 1 - Send PUT request to /users/:id with `tcU004.updated` as body                          |
+| **Test Data**   | `fixtures/users.json → tcU004.updated`                                                    |
+| **Expected**    | 200 OK — response body matches `tcU004.updated` with the same `id` from precondition      |
+| **Actual**      | 200 OK                                                                                    |
+| **Status**      | PASS                                                                                      |
+| **Comments**    | `original` and `updated` must differ in meaningful fields to validate that the update actually happened |
+
+---
+
+## TC-U005 — Delete user
+
+### Header
+
+| Field              | Value                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| **ID**             | TC-U005                                                                                |
+| **Description**    | Delete user by ID                                                                      |
+| **Resource**       | Users                                                                                  |
+| **Method**         | DELETE                                                                                 |
+| **Endpoint**       | /users/:id                                                                             |
+| **Preconditions**  | Create a user via POST /users using `fixtures/users.json → tcU005` and store the returned ID |
+| **Postconditions** | User no longer exists in the system                                                    |
+
+### Body
+
+| Field           | Value                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Steps**       | 1 - Send DELETE request to /users/:id using the ID from precondition                      |
+| **Test Data**   | None                                                                                      |
+| **Expected**    | 200 OK — response body matches the user created in precondition                           |
+| **Actual**      | 200 OK                                                                                    |
+| **Status**      | PASS                                                                                      |
+| **Comments**    | No teardown needed — the test itself is the deletion. DELETE response includes an extra Mongoose `__v` field, tolerated by `.to.deep.include`  |
+
+---
+
+## TC-A001 — Login with valid credentials returns JWT
+
+### Header
+
+| Field              | Value                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| **ID**             | TC-A001                                                                                |
+| **Description**    | Login with valid credentials returns a JWT token                                       |
+| **Resource**       | Auth                                                                                   |
+| **Method**         | POST                                                                                   |
+| **Endpoint**       | /auth/login                                                                            |
+| **Preconditions**  | Create a user via POST /users using `fixtures/users.json → tcA001` and store the returned ID |
+| **Postconditions** | Delete the created user via DELETE /users/:id                                          |
+
+### Body
+
+| Field           | Value                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Steps**       | 1 - Send POST request to /auth/login with `{username, password}` from `fixtures/users.json → tcA001` |
+| **Test Data**   | `{ username: "tcA001", password: "secretA001" }`                                          |
+| **Expected**    | 200 OK — response body has a non-empty `token` string in JWT format (three dot-separated parts) |
+| **Actual**      | 200 OK                                                                                    |
+| **Status**      | PASS                                                                                      |
+| **Comments**    | Precondition creates the user so the test is self-contained and does not depend on seeded accounts |
 
 ---
