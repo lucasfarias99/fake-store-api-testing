@@ -15,9 +15,9 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-001 — Get all products', () => {
+    it('TC-P001 — Get all products', () => {
         cy.fixture('products').then((products) => {
-            const seedProducts = products.tc001
+            const seedProducts = products.tcP001
 
             seedProducts.forEach((product) => {
                 cy.request('POST', '/products', product).then((res) => {
@@ -38,9 +38,9 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-002 — Add new product', () => {
+    it('TC-P002 — Add new product', () => {
         cy.fixture('products').then((products) => {
-            const newProduct = products.tc002
+            const newProduct = products.tcP002
 
             cy.request('POST', '/products', newProduct).then((response) => {
                 expect(response.status).to.eq(200)
@@ -52,9 +52,9 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-003 — Get product by ID', () => {
+    it('TC-P003 — Get product by ID', () => {
         cy.fixture('products').then((products) => {
-            const product = products.tc003
+            const product = products.tcP003
 
             cy.request('POST', '/products', product).then((postRes) => {
                 const id = postRes.body.id
@@ -69,10 +69,10 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-004 — Update product by ID', () => {
+    it('TC-P004 — Update product by ID', () => {
         cy.fixture('products').then((products) => {
-            const original = products.tc004.original
-            const updated = products.tc004.updated
+            const original = products.tcP004.original
+            const updated = products.tcP004.updated
 
             cy.request('POST', '/products', original).then((postRes) => {
                 const id = postRes.body.id
@@ -87,9 +87,9 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-005 — Delete product by ID', () => {
+    it('TC-P005 — Delete product by ID', () => {
         cy.fixture('products').then((products) => {
-            const product = products.tc005
+            const product = products.tcP005
 
             cy.request('POST', '/products', product).then((postRes) => {
                 const id = postRes.body.id
@@ -103,9 +103,9 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-006 — List product categories includes created category', () => {
+    it('TC-P006 — List product categories includes created category', () => {
         cy.fixture('products').then((products) => {
-            const product = products.tc006
+            const product = products.tcP006
 
             cy.request('POST', '/products', product).then((postRes) => {
                 createdIds.push(postRes.body.id)
@@ -119,9 +119,9 @@ describe('API - /products', () => {
         })
     })
 
-    it('TC-007 — List products in category returns only matching products', () => {
+    it('TC-P007 — List products in category returns only matching products', () => {
         cy.fixture('products').then((products) => {
-            const seedProducts = products.tc007
+            const seedProducts = products.tcP007
             const category = seedProducts[0].category
 
             seedProducts.forEach((product) => {

@@ -30,18 +30,18 @@
 
 ---
 
-## TC-001 — Get all products
+## TC-P001 — Get all products
 
 ### Header
 
 | Field              | Value                                               |
 |--------------------|-----------------------------------------------------|
-| **ID**             | TC-001                                              |
+| **ID**             | TC-P001                                              |
 | **Description**    | Get all products                                    |
 | **Resource**       | Products                                            |
 | **Method**         | GET                                                 |
 | **Endpoint**       | /products                                           |
-| **Preconditions**  | Create 3 products via POST /products using each entry in `fixtures/products.json → tc001` |
+| **Preconditions**  | Create 3 products via POST /products using each entry in `fixtures/products.json → tcP001` |
 | **Postconditions** | Products remain in the system                       |
 
 ### Body
@@ -57,13 +57,13 @@
 
 ---
 
-## TC-002 — Add new product
+## TC-P002 — Add new product
 
 ### Header
 
 | Field              | Value                                               |
 |--------------------|-----------------------------------------------------|
-| **ID**             | TC-002                                              |
+| **ID**             | TC-P002                                              |
 | **Description**    | Add new product                                     |
 | **Resource**       | Products                                            |
 | **Method**         | POST                                                |
@@ -76,26 +76,26 @@
 | Field           | Value                                                                      |
 |-----------------|----------------------------------------------------------------------------|
 | **Steps**       | 1 - Send POST request to /products with test data                          |
-| **Test Data**   | `fixtures/products.json → tc002`                                           |
-| **Expected**    | 200 OK — response body matches the `tc002` fixture with an auto-generated `id` |
+| **Test Data**   | `fixtures/products.json → tcP002`                                           |
+| **Expected**    | 200 OK — response body matches the `tcP002` fixture with an auto-generated `id` |
 | **Actual**      | 200 OK                                                                     |
 | **Status**      | PASS                                                                       |
 | **Comments**    | API returns 200 instead of REST-standard 201 on resource creation          |
 
 ---
 
-## TC-003 — Get product by ID
+## TC-P003 — Get product by ID
 
 ### Header
 
 | Field              | Value                                               |
 |--------------------|-----------------------------------------------------|
-| **ID**             | TC-003                                              |
+| **ID**             | TC-P003                                              |
 | **Description**    | Get product by ID                                   |
 | **Resource**       | Products                                            |
 | **Method**         | GET                                                 |
 | **Endpoint**       | /products/:id                                       |
-| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tc003` and store the returned ID |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcP003` and store the returned ID |
 | **Postconditions** | Delete the created product via DELETE /products/:id |
 
 ### Body
@@ -104,52 +104,52 @@
 |-----------------|----------------------------------------------------------------------------|
 | **Steps**       | 1 - Send GET request to /products/:id using the ID from precondition       |
 | **Test Data**   | None                                                                       |
-| **Expected**    | 200 OK — response body matches the `tc003` fixture with the same `id` from precondition |
+| **Expected**    | 200 OK — response body matches the `tcP003` fixture with the same `id` from precondition |
 | **Actual**      | 200 OK                                                                     |
 | **Status**      | PASS                                                                       |
 | **Comments**    | None                                                                       |
 
 ---
 
-## TC-004 — Update product
+## TC-P004 — Update product
 
 ### Header
 
 | Field              | Value                                                                 |
 |--------------------|-----------------------------------------------------------------------|
-| **ID**             | TC-004                                                                |
+| **ID**             | TC-P004                                                                |
 | **Description**    | Update product by ID                                                  |
 | **Resource**       | Products                                                              |
 | **Method**         | PUT                                                                   |
 | **Endpoint**       | /products/:id                                                         |
-| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tc004.original` and store the returned ID |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcP004.original` and store the returned ID |
 | **Postconditions** | Delete the created product via DELETE /products/:id                   |
 
 ### Body
 
 | Field           | Value                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------|
-| **Steps**       | 1 - Send PUT request to /products/:id with `tc004.updated` as body                        |
-| **Test Data**   | `fixtures/products.json → tc004.updated`                                                  |
-| **Expected**    | 200 OK — response body matches `tc004.updated` with the same `id` from precondition       |
+| **Steps**       | 1 - Send PUT request to /products/:id with `tcP004.updated` as body                        |
+| **Test Data**   | `fixtures/products.json → tcP004.updated`                                                  |
+| **Expected**    | 200 OK — response body matches `tcP004.updated` with the same `id` from precondition       |
 | **Actual**      | 200 OK                                                                                    |
 | **Status**      | PASS                                                                                      |
 | **Comments**    | Test data must differ from the product created in precondition to validate the update     |
 
 ---
 
-## TC-005 — Delete product
+## TC-P005 — Delete product
 
 ### Header
 
 | Field              | Value                                                                 |
 |--------------------|-----------------------------------------------------------------------|
-| **ID**             | TC-005                                                                |
+| **ID**             | TC-P005                                                                |
 | **Description**    | Delete product by ID                                                  |
 | **Resource**       | Products                                                              |
 | **Method**         | DELETE                                                                |
 | **Endpoint**       | /products/:id                                                         |
-| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tc005` and store the returned ID |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcP005` and store the returned ID |
 | **Postconditions** | Product no longer exists in the system                                |
 
 ### Body
@@ -165,18 +165,18 @@
 
 ---
 
-## TC-006 — List product categories
+## TC-P006 — List product categories
 
 ### Header
 
 | Field              | Value                                                                                  |
 |--------------------|----------------------------------------------------------------------------------------|
-| **ID**             | TC-006                                                                                 |
+| **ID**             | TC-P006                                                                                 |
 | **Description**    | List product categories includes dynamically added category                            |
 | **Resource**       | Products                                                                               |
 | **Method**         | GET                                                                                    |
 | **Endpoint**       | /products/categories                                                                   |
-| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tc006` and store the returned ID |
+| **Preconditions**  | Create a product via POST /products using `fixtures/products.json → tcP006` and store the returned ID |
 | **Postconditions** | Delete the created product via DELETE /products/:id                                    |
 
 ### Body
@@ -185,32 +185,32 @@
 |-----------------|-------------------------------------------------------------------------------------------|
 | **Steps**       | 1 - Send GET request to /products/categories                                              |
 | **Test Data**   | None                                                                                      |
-| **Expected**    | 200 OK — response array includes `"test-categoria-tc006"`                                 |
+| **Expected**    | 200 OK — response array includes `"test-categoria-tcP006"`                                 |
 | **Actual**      | 200 OK                                                                                    |
 | **Status**      | PASS                                                                                      |
 | **Comments**    | Categories are derived dynamically from existing products via `distinct('category')` — no category table exists |
 
 ---
 
-## TC-007 — List products in category
+## TC-P007 — List products in category
 
 ### Header
 
 | Field              | Value                                                                                  |
 |--------------------|----------------------------------------------------------------------------------------|
-| **ID**             | TC-007                                                                                 |
+| **ID**             | TC-P007                                                                                 |
 | **Description**    | List products in category returns only products of that category                       |
 | **Resource**       | Products                                                                               |
 | **Method**         | GET                                                                                    |
 | **Endpoint**       | /products/category/:category                                                           |
-| **Preconditions**  | Create 3 products via POST /products using each entry in `fixtures/products.json → tc007` and store their IDs |
+| **Preconditions**  | Create 3 products via POST /products using each entry in `fixtures/products.json → tcP007` and store their IDs |
 | **Postconditions** | Delete all 3 created products via DELETE /products/:id                                 |
 
 ### Body
 
 | Field           | Value                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------|
-| **Steps**       | 1 - Send GET request to /products/category/test-categoria-tc007                           |
+| **Steps**       | 1 - Send GET request to /products/category/test-categoria-tcP007                           |
 | **Test Data**   | None                                                                                      |
 | **Expected**    | 200 OK — response array contains exactly the 3 products created in precondition           |
 | **Actual**      | 200 OK                                                                                    |

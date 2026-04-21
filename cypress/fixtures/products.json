@@ -1,92 +1,92 @@
 {
-  "tc001": [
+  "tcP001": [
     {
       "title": "Produto TC-001 A",
       "price": 1,
       "description": "Produto A para teste de listagem geral",
-      "category": "test-categoria-tc001",
-      "image": "http://tc001a.com"
+      "category": "test-categoria-tcP001",
+      "image": "http://tcP001a.com"
     },
     {
       "title": "Produto TC-001 B",
       "price": 2,
       "description": "Produto B para teste de listagem geral",
-      "category": "test-categoria-tc001",
-      "image": "http://tc001b.com"
+      "category": "test-categoria-tcP001",
+      "image": "http://tcP001b.com"
     },
     {
       "title": "Produto TC-001 C",
       "price": 3,
       "description": "Produto C para teste de listagem geral",
-      "category": "test-categoria-tc001",
-      "image": "http://tc001c.com"
+      "category": "test-categoria-tcP001",
+      "image": "http://tcP001c.com"
     }
   ],
-  "tc002": {
+  "tcP002": {
     "title": "Produto TC-002",
     "price": 10,
     "description": "Produto para teste de criação",
-    "category": "test-categoria-tc002",
-    "image": "http://tc002.com"
+    "category": "test-categoria-tcP002",
+    "image": "http://tcP002.com"
   },
-  "tc003": {
+  "tcP003": {
     "title": "Produto TC-003",
     "price": 20,
     "description": "Produto para teste de busca por ID",
-    "category": "test-categoria-tc003",
-    "image": "http://tc003.com"
+    "category": "test-categoria-tcP003",
+    "image": "http://tcP003.com"
   },
-  "tc004": {
+  "tcP004": {
     "original": {
       "title": "Produto TC-004 original",
       "price": 30,
       "description": "Produto original antes do update",
-      "category": "test-categoria-tc004",
-      "image": "http://tc004-original.com"
+      "category": "test-categoria-tcP004",
+      "image": "http://tcP004-original.com"
     },
     "updated": {
       "title": "Produto TC-004 atualizado",
       "price": 300,
       "description": "Produto atualizado pelo PUT",
-      "category": "test-categoria-tc004-updated",
-      "image": "http://tc004-updated.com"
+      "category": "test-categoria-tcP004-updated",
+      "image": "http://tcP004-updated.com"
     }
   },
-  "tc005": {
+  "tcP005": {
     "title": "Produto TC-005",
     "price": 40,
     "description": "Produto para teste de deleção",
-    "category": "test-categoria-tc005",
-    "image": "http://tc005.com"
+    "category": "test-categoria-tcP005",
+    "image": "http://tcP005.com"
   },
-  "tc006": {
+  "tcP006": {
     "title": "Produto TC-006",
     "price": 50,
     "description": "Produto para teste de listagem de categorias",
-    "category": "test-categoria-tc006",
-    "image": "http://tc006.com"
+    "category": "test-categoria-tcP006",
+    "image": "http://tcP006.com"
   },
-  "tc007": [
+  "tcP007": [
     {
       "title": "Produto TC-007 A",
       "price": 1,
       "description": "Produto A da categoria de teste",
-      "category": "test-categoria-tc007",
-      "image": "http://tc007a.com"
+      "category": "test-categoria-tcP007",
+      "image": "http://tcP007a.com"
     },
     {
       "title": "Produto TC-007 B",
       "price": 2,
       "description": "Produto B da categoria de teste",
-      "category": "test-categoria-tc007",
-      "image": "http://tc007b.com"
+      "category": "test-categoria-tcP007",
+      "image": "http://tcP007b.com"
     },
     {
       "title": "Produto TC-007 C",
       "price": 3,
       "description": "Produto C da categoria de teste",
-      "category": "test-categoria-tc007",
-      "image": "http://tc007c.com"
+      "category": "test-categoria-tcP007",
+      "image": "http://tcP007c.com"
     }
   ]
 }
