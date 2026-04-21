@@ -66,6 +66,57 @@
     "category": "test-categoria-tcP006",
     "image": "http://tcP006.com"
   },
+  "tcC001": {
+    "title": "Produto auxiliar TC-C001",
+    "price": 10,
+    "description": "Produto auxiliar para teste de listagem de carrinhos",
+    "category": "test-categoria-tcC001",
+    "image": "http://tcC001.com"
+  },
+  "tcC002": [
+    {
+      "title": "Produto auxiliar TC-C002 A",
+      "price": 10,
+      "description": "Produto auxiliar A para teste de criação de carrinho",
+      "category": "test-categoria-tcC002",
+      "image": "http://tcC002a.com"
+    },
+    {
+      "title": "Produto auxiliar TC-C002 B",
+      "price": 20,
+      "description": "Produto auxiliar B para teste de criação de carrinho",
+      "category": "test-categoria-tcC002",
+      "image": "http://tcC002b.com"
+    }
+  ],
+  "tcC003": {
+    "title": "Produto auxiliar TC-C003",
+    "price": 10,
+    "description": "Produto auxiliar para teste de busca de carrinho por ID",
+    "category": "test-categoria-tcC003",
+    "image": "http://tcC003.com"
+  },
+  "tcC004": {
+    "title": "Produto auxiliar TC-C004",
+    "price": 10,
+    "description": "Produto auxiliar para teste de busca de carrinhos por userId",
+    "category": "test-categoria-tcC004",
+    "image": "http://tcC004.com"
+  },
+  "tcC005": {
+    "title": "Produto auxiliar TC-C005",
+    "price": 10,
+    "description": "Produto auxiliar para teste de update de carrinho",
+    "category": "test-categoria-tcC005",
+    "image": "http://tcC005.com"
+  },
+  "tcC006": {
+    "title": "Produto auxiliar TC-C006",
+    "price": 10,
+    "description": "Produto auxiliar para teste de deleção de carrinho",
+    "category": "test-categoria-tcC006",
+    "image": "http://tcC006.com"
+  },
   "tcP007": [
     {
       "title": "Produto TC-007 A",

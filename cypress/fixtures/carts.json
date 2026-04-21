@@ -1,0 +1,39 @@
+{
+  "tcC001": {
+    "userId": 101,
+    "date": "2026-04-21T00:00:00.000Z",
+    "quantities": [2]
+  },
+  "tcC002": {
+    "userId": 102,
+    "date": "2026-04-21T00:00:00.000Z",
+    "quantities": [3, 1]
+  },
+  "tcC003": {
+    "userId": 103,
+    "date": "2026-04-21T00:00:00.000Z",
+    "quantities": [1]
+  },
+  "tcC004": {
+    "userId": 104,
+    "date": "2026-04-21T00:00:00.000Z",
+    "quantities": [1]
+  },
+  "tcC005": {
+    "original": {
+      "userId": 105,
+      "date": "2026-04-21T00:00:00.000Z",
+      "quantities": [1]
+    },
+    "updated": {
+      "userId": 105,
+      "date": "2026-05-01T00:00:00.000Z",
+      "quantities": [99]
+    }
+  },
+  "tcC006": {
+    "userId": 106,
+    "date": "2026-04-21T00:00:00.000Z",
+    "quantities": [1]
+  }
+}
