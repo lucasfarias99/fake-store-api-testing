@@ -2,6 +2,7 @@ import productsFixture from '../../fixtures/products.json'
 import cartsFixture from '../../fixtures/carts.json'
 
 describe('API - /carts', () => {
+    
     it('TC-C001 — Get all carts', () => {
         const cartData = cartsFixture.tcC001
 

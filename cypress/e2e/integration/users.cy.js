@@ -2,6 +2,7 @@ import users from '../../fixtures/users.json'
 import { uniquify } from '../../support/utils'
 
 describe('API - /users', () => {
+    
     it('TC-U001 — Get all users', () => {
         const user = uniquify(users.tcU001, Date.now(), ['email', 'username'])
 

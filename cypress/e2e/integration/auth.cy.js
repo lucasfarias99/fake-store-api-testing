@@ -2,6 +2,7 @@ import users from '../../fixtures/users.json'
 import { uniquify } from '../../support/utils'
 
 describe('API - /auth', () => {
+    
     it('TC-A001 — Login with valid credentials returns JWT', () => {
         const user = uniquify(users.tcA001, Date.now(), ['email', 'username'])
 

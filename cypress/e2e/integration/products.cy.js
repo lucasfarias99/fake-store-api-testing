@@ -2,6 +2,7 @@ import products from '../../fixtures/products.json'
 import { uniquify } from '../../support/utils'
 
 describe('API - /products', () => {
+    
     it('TC-P001 — Get all products', () => {
         const product = uniquify(products.tcP001, Date.now(), ['title', 'category'])
 
